@@ -1,9 +1,13 @@
 {
-    "name": "application-name"
+    "name": "express-lane-client"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.5.8"
+      "express": ">= 2.5.8"
     , "jade": ">= 0.0.1"
+    , "stylus": ">= 0.24.0"
+    , "connect-assets": ">= 2.1.9"
+    , "socket.io": ">= 0.9.4"
+    , "request": ">= 2.9.153"
   }
 }
