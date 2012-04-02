@@ -20,12 +20,17 @@ html(lang='en')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='#') Express Lane
+          a.brand(href='/products') Express Lane
           .nav-collapse
             ul.nav
-              li.active: a(href='#') Home
-              li: a(href='#about') About
-              li: a(href='#contact') Contact
+              li: a(href='/cart') Shopping Cart
+              if isLoggedIn
+                li: a(href='/orders') Previous Orders
+                if hasAdminAccess
+                  li: a(href='/admin') Admin
+                li: a(href='#') Logout
+              else
+                li: a(href='#') Login
 
     block content
 
