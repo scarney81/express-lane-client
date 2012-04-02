@@ -1,8 +1,23 @@
+exports.products = function(req, res){
+  res.render('products');
+};
 
-/*
- * GET home page.
- */
+exports.product = function(req, res){
+  res.render('product');
+};
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+exports.cart = function(req, res){
+  res.render('cart');
+};
+
+exports.checkout = function(req, res){
+  res.render('checkout');
+};
+
+exports.orders = function(req, res){
+  res.render('orders');
+};
+
+exports.admin = function(req, res){
+  res.render('admin');
 };

@@ -10,4 +10,7 @@
     , "socket.io": ">= 0.9.4"
     , "request": ">= 2.9.153"
   }
+  , "scripts": {
+      "start": "node app.js"
+  }
 }
