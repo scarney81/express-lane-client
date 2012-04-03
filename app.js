@@ -4,9 +4,9 @@ var express = require('express')
     secret: (process.env.SECRET || 'i can haz sekrets?')
   }
   , repos = {
-    cart: new (require('./cart'))(),
-    orders: new (require('./orders'))(),
-    products: new (require('./products'))()
+    cart: new (require('./repositories/cart'))(config),
+    orders: new (require('./repositories/orders'))(config),
+    products: new (require('./repositories/products'))(config)
   }
   , routes = {
     admin: require('./routes/admin')(repos.orders),
