@@ -4,15 +4,15 @@ var express = require('express')
     secret: (process.env.SECRET || 'i can haz sekrets?')
   }
   , repos = {
-    cart: require('./cart'),
-    orders: require('./orders'),
-    products: require('./products')
+    cart: new (require('./cart'))(),
+    orders: new (require('./orders'))(),
+    products: new (require('./products'))()
   }
   , routes = {
-    admin: require('./routes/admin')(new repos.orders()),
-    cart: require('./routes/cart')(new repos.cart()),
-    checkout: require('./routes/checkout')(new repos.cart(), new repos.orders()),
-    product: require('./routes/product')(new repos.products())
+    admin: require('./routes/admin')(repos.orders),
+    cart: require('./routes/cart')(repos.cart),
+    checkout: require('./routes/checkout')(repos.cart, repos.orders),
+    product: require('./routes/product')(repos.products)
   };
 var app = module.exports = express.createServer();
 
