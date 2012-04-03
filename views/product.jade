@@ -6,8 +6,13 @@ block content
     h2= product.name
 
     dl
-      dd IMAGE
+      dd: img(src=product.image)
       dt Name
       dd= product.name
       dt Price
       dd= product.price
+      dt Description
+      dd= product.description
+
+    form(method='/cart/#{product.id}', method='POST')
+      input(type='submit', value='Add To Cart')

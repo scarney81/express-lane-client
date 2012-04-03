@@ -1,15 +1,15 @@
 module.exports = function(){
   var self = this;
 
-  self.find = function(emailAddress, cb){
+  self.find = function(session, cb){
     cb([]);
   };
 
-  self.add = function(emailAddress, product, cb){
+  self.add = function(session, product, cb){
     cb();
   };
 
-  self.remove = function(emailAddress, product, cb){
+  self.remove = function(session, product, cb){
     cb();
   };
 

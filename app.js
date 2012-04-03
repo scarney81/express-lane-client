@@ -10,7 +10,7 @@ var express = require('express')
   }
   , routes = {
     admin: require('./routes/admin')(repos.orders),
-    cart: require('./routes/cart')(repos.cart),
+    cart: require('./routes/cart')(repos.cart, repos.products),
     checkout: require('./routes/checkout')(repos.cart, repos.orders),
     product: require('./routes/product')(repos.products)
   };
@@ -57,18 +57,18 @@ app.dynamicHelpers({
 
 // Routes
 
-app.get('/', routes.product.all);
-app.get('/products/:id', routes.product.single);
+app.get( '/', routes.product.all);
+app.get( '/products/:id', routes.product.single);
 
-app.get('/cart', routes.cart.all);
-app.put('/cart', routes.cart.insert);
-app.del('/cart', routes.cart.remove);
+app.get( '/cart', routes.cart.all);
+app.put( '/cart', routes.cart.insert);
+app.del( '/cart', routes.cart.remove);
 
-app.get('/checkout', routes.checkout.checkout);
+app.get( '/checkout', routes.checkout.checkout);
 app.post('/checkout', routes.checkout.checkout_post);
-app.get('/orders', routes.checkout.orders);
+app.get( '/orders', routes.checkout.orders);
 
-app.get('/admin', routes.admin.admin);
+app.get( '/admin', routes.admin.admin);
 app.post('/admin', routes.admin.admin_post);
 
 // Go!
