@@ -2,5 +2,10 @@ extends layout
 
 block content
   .container
-    h1 Products
-    p Lorem ipsum.
+
+    ul
+      for p in products
+        li: dl
+          dd.image IMAGE
+          dd.name: a(href='/products/#{p.id}')= p.name
+          dd.price= p.price

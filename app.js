@@ -1,8 +1,18 @@
 var express = require('express')
-  , routes = require('./routes')
   , config = {
-      port: (process.env.PORT || 3000),
-      secret: (process.env.SECRET || 'i can haz sekrets?')
+    port: (process.env.PORT || 3000),
+    secret: (process.env.SECRET || 'i can haz sekrets?')
+  }
+  , repos = {
+    cart: require('./cart'),
+    orders: require('./orders'),
+    products: require('./products')
+  }
+  , routes = {
+    admin: require('./routes/admin')(new repos.orders()),
+    cart: require('./routes/cart')(new repos.cart()),
+    checkout: require('./routes/checkout')(new repos.cart(), new repos.orders()),
+    product: require('./routes/product')(new repos.products())
   };
 var app = module.exports = express.createServer();
 
@@ -47,20 +57,19 @@ app.dynamicHelpers({
 
 // Routes
 
-app.get('/', routes.products);
-app.get('/products/:id', routes.product);
+app.get('/', routes.product.all);
+app.get('/products/:id', routes.product.single);
 
-app.get('/cart', routes.cart);
-app.put('/cart', routes.add_to_cart);
-app.del('/cart', routes.remove_from_cart);
+app.get('/cart', routes.cart.all);
+app.put('/cart', routes.cart.insert);
+app.del('/cart', routes.cart.remove);
 
-app.get('/checkout', routes.checkout);
-app.post('/checkout', routes.checkout_post);
+app.get('/checkout', routes.checkout.checkout);
+app.post('/checkout', routes.checkout.checkout_post);
+app.get('/orders', routes.checkout.orders);
 
-app.get('/orders', routes.orders);
-
-app.get('/admin', routes.admin);
-app.post('/admin', routes.admin_post);
+app.get('/admin', routes.admin.admin);
+app.post('/admin', routes.admin.admin_post);
 
 // Go!
 

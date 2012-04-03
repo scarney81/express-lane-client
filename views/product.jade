@@ -2,5 +2,12 @@ extends layout
 
 block content
   .container
-    h1 Product
-    p Lorem ipsum.
+
+    h2= product.name
+
+    dl
+      dd IMAGE
+      dt Name
+      dd= product.name
+      dt Price
+      dd= product.price
