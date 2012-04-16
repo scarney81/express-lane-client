@@ -1,7 +1,8 @@
 var express = require('express')
   , config = {
     port: (process.env.PORT || 3001),
-    secret: (process.env.SECRET || 'i can haz sekrets?')
+    secret: (process.env.SECRET || 'i can haz sekrets?'),
+    serverUrl: 'http://localhost:3000'
   }
   , repos = {
     cart: new (require('./repositories/cart'))(config),
