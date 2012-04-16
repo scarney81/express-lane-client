@@ -10,7 +10,7 @@ var express = require('express')
     products: new (require('./repositories/products'))(config)
   }
   , routes = {
-    admin: require('./routes/admin')(repos.orders),
+    admin: require('./routes/admin'),
     cart: require('./routes/cart')(repos.cart, repos.products),
     checkout: require('./routes/checkout')(repos.cart, repos.orders),
     product: require('./routes/product')
@@ -65,8 +65,7 @@ app.get( '/checkout', routes.checkout.checkout);
 app.post('/checkout', routes.checkout.checkout_post);
 app.get( '/orders', routes.checkout.orders);
 
-app.get( '/admin', routes.admin.admin);
-app.post('/admin', routes.admin.admin_post);
+routes.admin(app, repos.orders);
 
 // Go!
 
