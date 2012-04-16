@@ -2,8 +2,8 @@ module.exports = function(ordersRepo){
   return {
 
     admin: function(req, res){
-      ordersRepo.find(function(orders){
-        res.render('admin');
+      ordersRepo.find(function(err, orders){
+        res.render('admin', { orders: orders });
       });
     },
 

@@ -2,5 +2,13 @@ extends layout
 
 block content
   .container
-    h1 Admin Console
-    p Lorem ipsum.
+  
+    h1 Admin Console: Orders
+    ul
+      for o in orders
+        li: dl
+          dd.email: a(href='/order/#{o._id}')= o.email
+          dd.total_price= o.total_price
+          dd.status= o.status
+          - if(o.status === 'pending')
+              dd.mark_complete: a(href="#") Mark Complete
