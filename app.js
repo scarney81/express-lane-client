@@ -1,6 +1,6 @@
 var express = require('express')
   , config = {
-    port: (process.env.PORT || 3000),
+    port: (process.env.PORT || 3001),
     secret: (process.env.SECRET || 'i can haz sekrets?')
   }
   , repos = {

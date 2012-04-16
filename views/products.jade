@@ -6,7 +6,7 @@ block content
     ul
       for p in products
         li: dl
-          dd.image: a(href='/products/#{p.id}'): img(src=p.image, style='width: 120px')
-          dd.name: a(href='/products/#{p.id}')= p.name
+          dd.image: a(href='/products/#{p._id}'): img(src=p.image, style='width: 120px')
+          dd.name: a(href='/products/#{p._id}')= p.name
           dd.price= p.price
           dd.description= p.description
