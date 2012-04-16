@@ -42,7 +42,7 @@ app.configure('production', function(){
 });
 
 // Helpers (globally available to view engine)
-
+console.log(app);
 app.helpers({
   title: 'Express Lane'
 });
