@@ -25,6 +25,12 @@ module.exports = function(config) {
   self.add = function(order, cb){
     cb();
   };
+  
+  self.mark_complete = function(id, cb) {
+    var url = baseUrl + '/order/' + id + '/complete';
+    var options = { json: true, method: 'post', url: url };
+    makeRequest(options, cb);
+  };
 
   return self;
 };

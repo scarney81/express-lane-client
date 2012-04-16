@@ -8,8 +8,10 @@ module.exports = function(ordersRepo){
     },
 
     admin_post: function(req, res){
-      //TODO
-      res.redirect('/admin');
+      var order_id = req.body.order_id;
+      ordersRepo.mark_complete(order_id, function(err, order) {
+        res.redirect('/admin');
+      });
     }
 
   };

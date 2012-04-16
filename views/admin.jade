@@ -6,9 +6,11 @@ block content
     h1 Admin Console: Orders
     ul
       for o in orders
-        li: dl
-          dd.email: a(href='/order/#{o._id}')= o.email
-          dd.total_price= o.total_price
-          dd.status= o.status
-          - if(o.status === 'pending')
-              dd.mark_complete: a(href="#") Mark Complete
+        form(method='post', action='/admin')
+          input(type='hidden', id='order_id', name='order_id', value="#{o._id}")
+          li: dl
+            dd.email= o.email
+            dd.total_price= o.total_price
+            dd.status= o.status
+            - if(o.status === 'pending')
+                dd.mark_complete: input(type='submit', value='Mark Complete')
