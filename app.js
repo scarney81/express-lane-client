@@ -13,7 +13,7 @@ var express = require('express')
     admin: require('./routes/admin')(repos.orders),
     cart: require('./routes/cart')(repos.cart, repos.products),
     checkout: require('./routes/checkout')(repos.cart, repos.orders),
-    product: require('./routes/product')(repos.products)
+    product: require('./routes/product')
   };
 var app = module.exports = express.createServer();
 
@@ -56,10 +56,7 @@ app.dynamicHelpers({
 });
 
 // Routes
-
-app.get( '/', routes.product.all);
-app.get( '/products/:id', routes.product.single);
-
+routes.product(app, repos.products);
 app.get( '/cart', routes.cart.all);
 app.put( '/cart', routes.cart.insert);
 app.del( '/cart', routes.cart.remove);
