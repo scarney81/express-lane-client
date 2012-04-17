@@ -11,6 +11,7 @@ block content
           li: dl
             dd.email= o.email
             dd.total_price= o.total_price
+            dd.product_count= o.products.length
             dd.status= o.status
             - if(o.status === 'pending')
-                dd.mark_complete: input(type='submit', value='Mark Complete')
+                dd.mark_complete: input.btn.btn-success(type='submit', value='Mark Complete')
