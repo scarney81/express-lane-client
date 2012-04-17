@@ -7,7 +7,19 @@ block content
     if orders.length
       ul
         each order in orders
-          li #{order.total_price}: #{order.status}
+          li: dl
+            dt Order #:
+            dd= order._id
+            dt Status:
+            dd= order.status
+            dt Placed on:
+            dd= order.date
+            dt Products:
+            dd: ul
+              each product in order.products
+                li #{product.quantity}x <a href='/products/#{product._id}'>#{product.name}</a> ($#{(product.price * 1).toFixed(2)})
+            dt Total:
+            dd $#{(order.total_price * 1).toFixed(2)}
     else
       p: em You have not placed any orders.
 
