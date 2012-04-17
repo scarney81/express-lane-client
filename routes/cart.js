@@ -1,8 +1,13 @@
 module.exports = function(app, cartRepo, productsRepo){
 
   app.get('/cart', function(req, res){
-    cartRepo.find(req.session, function(err, products){
-      res.render('cart', {products: products});
+    cartRepo.find(req.session, function(err, productsInCart){
+      res.render('cart', {
+        cart: productsInCart,
+        total: productsInCart.reduce(function(previous, current){
+          return previous + (current.quantity * current.product.price);
+        }, 0)
+      });
     });
   });
 

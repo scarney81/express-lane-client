@@ -3,9 +3,39 @@ extends layout
 block content
   .container
     h1 Shopping Cart
-    if products.length
-      ul
-        each product in products
-          li #{product.id} x#{product.quantity}
+
+    if cart.length
+      table#cart
+        thead
+          tr
+            th Product
+            th Quantity
+            th Unit Price
+            th Sub-Total
+            th
+        tbody
+        each productInCart in cart
+          tr
+            td: a(href='/products/#{productInCart.product._id}')= productInCart.product.name
+            td x#{productInCart.quantity}
+            td $#{(productInCart.product.price * 1).toFixed(2)}
+            td $#{(productInCart.product.price * productInCart.quantity).toFixed(2)}
+            td: form(action='/cart/#{productInCart.product._id}', method='POST')
+              input(type='hidden', name='_method', value='DELETE')
+              input.btn.btn-danger(type='submit', value='Remove')
+        tfoot
+          tr
+            td(colspan=3)
+            td $#{total.toFixed(2)}
+            td
     else
       p: em Your shopping cart is empty.
+
+    if cart.length
+      form(action='/orders', method='POST')
+        div.buttons
+          a.btn(href='/') Continue Shopping
+          input.btn.btn-success(type='submit', value='Checkout')
+    else
+      div.buttons
+        a.btn(href='/') Continue Shopping

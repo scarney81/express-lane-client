@@ -1,21 +1,18 @@
 module.exports = function(app, cartRepo, ordersRepo){
 
-  app.get('/checkout', function(req, res){
-    res.render('checkout');
-  });
-
-  app.post('/checkout', function(req, res){
-    cartRepo.find(req.session.emailAddress, function(products){
-      var order = {}; //TODO
-      ordersRepo.add(order, function(){
-        res.redirect('/orders');
+  app.post('/orders', function(req, res){
+    cartRepo.find(req.session, function(err, productsInCart){
+      ordersRepo.add(req.session.emailAddress, productsInCart, function(err, order){
+        cartRepo.empty(req.session, function(err){
+          res.redirect('/orders');
+        });
       });
     });
   });
 
   app.get('/orders', function(req, res){
-    ordersRepo.find(req.session.emailAddress, function(orders){
-      res.render('orders');
+    ordersRepo.find(req.session.emailAddress, function(err, orders){
+      res.render('orders', {orders: orders});
     });
   });
 

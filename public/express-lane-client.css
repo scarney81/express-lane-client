@@ -1,0 +1,42 @@
+body{
+  padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+  cursor: default;
+}
+
+table#cart{
+  margin-top: 1em;
+}
+table#cart thead{
+  background-color: #666;
+  color: #fff;
+}
+table#cart th{
+  padding: .5em 1em;
+  text-align: left;
+}
+table#cart td{
+  padding: .5em 1em;
+  text-align: right;
+}
+table#cart td:first-child{
+  padding: .5em 1em;
+  text-align: left;
+}
+table#cart form{
+  margin: 0;
+  padding: 0;
+}
+table#cart tfoot{
+  border-top: 1px solid #666;
+}
+
+.btn{
+  margin-right: 5px;
+}
+.btn:last-child{
+  margin-right: 0px;
+}
+
+.buttons form{
+  display: inline-block;
+}

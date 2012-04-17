@@ -5,24 +5,30 @@ module.exports = function(){
       var cart = session.cart || {};
       var itemsInCart = [];
       for(var key in cart)
-        itemsInCart.push({ id: key, quantity: cart[key] });
+        itemsInCart.push(cart[key]);
       cb(null, itemsInCart);
     },
 
     increment: function(session, product, cb){
       var cart = session.cart || {};
-      var quantity = (cart[product._id] || 0) + 1;
-      cart[product._id] = quantity;
+      var productInCart = cart[product._id] || {product: product, quantity: 0};
+      productInCart.quantity++;
+      cart[product._id] = productInCart;
       session.cart = cart;
-      cb(null, quantity);
+      cb(null, productInCart.quantity);
     },
 
     remove: function(session, product, cb){
       var cart = session.cart || {};
-      var quantity = cart[product._id];
+      var productInCart = cart[product._id];
       delete cart[product._id];
       session.cart = cart;
-      cb(null, quantity);
+      cb(null, productInCart.quantity);
+    },
+
+    empty: function(session, cb){
+      session.cart = null;
+      cb(null);
     }
 
   };
