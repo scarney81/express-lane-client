@@ -14,5 +14,5 @@ block content
       dt Description
       dd= product.description
 
-    form(method='/cart/#{product.id}', method='POST')
+    form(action='/cart/#{product._id}', method='POST')
       input(type='submit', value='Add To Cart')

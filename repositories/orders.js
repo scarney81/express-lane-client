@@ -13,24 +13,23 @@ var makeRequest = function(options, cb) {
 };
 
 module.exports = function(config) {
-  var self = this;
-  var baseUrl = config.serverUrl;
+  return {
 
-  self.find = function(cb){
-    var url = baseUrl + '/orders';
-    var options = { json: true, method: 'get', url: url };
-    makeRequest(options, cb);
-  };
+    find: function(cb){
+      var url = config.serverUrl + '/orders';
+      var options = { json: true, method: 'get', url: url };
+      makeRequest(options, cb);
+    },
 
-  self.add = function(order, cb){
-    cb();
-  };
-  
-  self.mark_complete = function(id, cb) {
-    var url = baseUrl + '/order/' + id + '/complete';
-    var options = { json: true, method: 'post', url: url };
-    makeRequest(options, cb);
-  };
+    add: function(order, cb){
+      cb(null, null);
+    },
 
-  return self;
+    mark_complete: function(id, cb) {
+      var url = config.serverUrl + '/order/' + id + '/complete';
+      var options = { json: true, method: 'post', url: url };
+      makeRequest(options, cb);
+    }
+
+  };
 };
