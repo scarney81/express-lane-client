@@ -7,12 +7,12 @@ block content
     if orders.length
       div#stats
         div.span5
-          h3 Pending Orders
+          h3 Pending Orders (#{pending} of #{total})
           p Orders pending completion
           div.progress.progress-striped.progress-warning.active
             div.bar(style="width: #{pending_percentage}%;")
         div.span5
-          h3 Completed Orders
+          h3 Completed Orders (#{complete} of #{total})
           p Orders that have shipped
           div.progress.progress-striped.progress-success.active
             div.bar(style="width: #{complete_percentage}%;")

@@ -7,7 +7,7 @@ module.exports = function(app, ordersRepo) {
       var complete = orders.filter(function(order) { return order.status === 'complete'; });
       var pending_percentage = (pending.length/total)*100;
       var complete_percentage = (complete.length/total)*100;
-      res.render('admin', { orders: orders, pending_percentage: pending_percentage, complete_percentage: complete_percentage});
+      res.render('admin', { orders: orders, total: total, pending: pending.length, complete: complete.length, pending_percentage: pending_percentage, complete_percentage: complete_percentage});
     });
   });
 
