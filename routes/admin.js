@@ -1,7 +1,7 @@
 module.exports = function(app, ordersRepo){
 
   app.get('/admin', function(req, res){
-    ordersRepo.find(function(err, orders){
+    ordersRepo.find(null, function(err, orders){
       res.render('admin', { orders: orders });
     });
   });
