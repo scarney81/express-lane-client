@@ -1,24 +1,22 @@
-module.exports = function(cartRepo, ordersRepo){
-  return {
+module.exports = function(app, cartRepo, ordersRepo){
 
-    checkout: function(req, res){
-      res.render('checkout');
-    },
+  app.get('/checkout', function(req, res){
+    res.render('checkout');
+  });
 
-    checkout_post: function(req, res){
-      cartRepo.find(req.session.emailAddress, function(products){
-        var order = {}; //TODO
-        ordersRepo.add(order, function(){
-          res.redirect('/orders');
-        });
+  app.post('/checkout', function(req, res){
+    cartRepo.find(req.session.emailAddress, function(products){
+      var order = {}; //TODO
+      ordersRepo.add(order, function(){
+        res.redirect('/orders');
       });
-    },
+    });
+  });
 
-    orders: function(req, res){
-      ordersRepo.find(req.session.emailAddress, function(orders){
-        res.render('orders');
-      });
-    }
+  app.get('/orders', function(req, res){
+    ordersRepo.find(req.session.emailAddress, function(orders){
+      res.render('orders');
+    });
+  });
 
-  };
 };

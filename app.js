@@ -11,8 +11,8 @@ var express = require('express')
   }
   , routes = {
     admin: require('./routes/admin'),
-    cart: require('./routes/cart')(repos.cart, repos.products),
-    checkout: require('./routes/checkout')(repos.cart, repos.orders),
+    cart: require('./routes/cart'),
+    checkout: require('./routes/checkout'),
     product: require('./routes/product')
   };
 var app = module.exports = express.createServer();
@@ -57,17 +57,11 @@ app.dynamicHelpers({
 
 // Routes
 routes.product(app, repos.products);
-app.get( '/cart', routes.cart.all);
-app.put( '/cart', routes.cart.insert);
-app.del( '/cart', routes.cart.remove);
-
-app.get( '/checkout', routes.checkout.checkout);
-app.post('/checkout', routes.checkout.checkout_post);
-app.get( '/orders', routes.checkout.orders);
-
+routes.cart(app, repos.cart, repos.products);
+routes.orders(app, repos.cart, repos.orders);
 routes.admin(app, repos.orders);
 
 // Go!
-
-app.listen(config.port);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+app.listen(config.port, function(){
+  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+});
