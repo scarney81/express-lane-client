@@ -11,7 +11,7 @@ html(lang='en')
       style
         body{ padding-top: 60px; } /* 60px to make the container go all the way to the bottom of the topbar */
       link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
-      link(rel='stylesheet', href='/express-lane-client.css')
+      link(rel='stylesheet', href='/css/express-lane-client.css')
   body
 
     .navbar.navbar-fixed-top
@@ -31,7 +31,7 @@ html(lang='en')
                   li: a(href='/admin') Admin
                 li: a(href='/logout') Logout
               else
-                li: a(href='/auth/twitter', id='login') Login
+                li: a.login-button(href='/auth/twitter') Login
 
     block content
 

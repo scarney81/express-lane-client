@@ -31,11 +31,15 @@ block content
     else
       p: em Your shopping cart is empty.
 
-    if cart.length
+    if cart.length && isLoggedIn
       form(action='/orders', method='POST')
         div.buttons
           a.btn(href='/') Continue Shopping
           input.btn.btn-success(type='submit', value='Checkout')
+    else if cart.length
+      a.btn(href='/') Continue Shopping
+      span.btn.login-button Login
+      span You must login in order to checkout.
     else
       div.buttons
         a.btn(href='/') Continue Shopping

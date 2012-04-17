@@ -1,5 +1,6 @@
 var express = require('express')
   , easyoauth = require('easy-oauth')
+  , oauthKeys = require('./oauth/keys_file')
   , config = {
     port: (process.env.PORT || 3001),
     secret: (process.env.SECRET || 'i can haz sekrets?'),
@@ -29,7 +30,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({ secret: config.secret }));
-  app.use(easyoauth(require('./oauth/keys_file')))
+  app.use(easyoauth(oauthKeys))
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
@@ -49,11 +50,11 @@ app.helpers({
 });
 app.dynamicHelpers({
   isLoggedIn: function(req){
-    return (req.session.auth.user);
+    return req.session.auth.user;
   },
 
   hasAdminAccess: function(req){
-    return (req.session.auth.user && req.session.auth.user.username === 'SethCarney');
+    return req.session.auth.user && req.session.auth.user.username === 'SethCarney';
   }
 });
 

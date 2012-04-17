@@ -3,8 +3,8 @@ var request = require('request');
 module.exports = function(config) {
   return {
 
-    find: function(emailAddress, cb){
-      var url = config.serverUrl + '/orders';
+    find: function(username, cb){
+      var url = config.serverUrl + '/orders/' + username;
       var options = { json: true, method: 'get', url: url };
       request(options, function(err, res, body) {
         if (err !== null) cb(err);
@@ -12,9 +12,9 @@ module.exports = function(config) {
       });
     },
 
-    add: function(emailAddress, productsInCart, cb){
-      if(!emailAddress || !emailAddress.length){
-        cb('no email address');
+    add: function(username, productsInCart, cb){
+      if(!username || !username.length){
+        cb('no username');
         return;
       }
       if(!productsInCart || !productsInCart.length){
@@ -23,7 +23,7 @@ module.exports = function(config) {
       }
 
       var order = {
-        email: emailAddress,
+        username: username,
         products: productsInCart.map(function(productInCart){
           return {
             _id: productInCart.product._id,
