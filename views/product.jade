@@ -5,14 +5,14 @@ block content
 
     h2= product.name
 
-    dl
-      dd: img(src=product.image)
+    dl#product
+      dd.image: img(src=product.image)
       dt Name
       dd= product.name
       dt Price
-      dd= product.price
+      dd $#{(product.price * 1).toFixed(2)}
       dt Description
       dd= product.description
-
-    form(action='/cart/#{product._id}', method='POST')
-      input.btn.btn-success(type='submit', value='Add To Cart')
+      dd: form(action='/cart/#{product._id}', method='POST')
+        input.btn.btn-success(type='submit', value='Add To Cart')
+        a.btn(href='/') Continue Shopping

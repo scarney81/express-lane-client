@@ -3,10 +3,10 @@ extends layout
 block content
   .container
 
-    ul
+    ul#products
       for p in products
         li: dl
-          dd.image: a(href='/products/#{p._id}'): img(src=p.image, style='width: 120px')
+          dd.image: a(href='/products/#{p._id}'): img(src=p.image)
           dd.name: a(href='/products/#{p._id}')= p.name
-          dd.price= p.price
+          dd.price $#{(p.price * 1).toFixed(2)}
           dd.description= p.description

@@ -3,6 +3,61 @@ body{
   cursor: default;
 }
 
+ul#products{
+  list-style-type: none;
+  margin: 0;
+}
+ul#products li{
+  position: relative;
+  padding: .5em;
+  margin: .5em;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  min-height: 130px;
+  background-image: -webkit-linear-gradient(top, #333, #222);
+  background-image: linear-gradient(top, #333, #222);
+  color: #fff;
+}
+ul#products dd{
+  margin-left: 100px;
+}
+ul#products .image{
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  margin-left: 0;
+}
+ul#products .image img{
+  width: 60px;
+  border: 4px solid #fff;
+}
+ul#products .description{
+  margin-top: 8px;
+  margin-right: 1em;
+  padding-top: 8px;
+  border-top: 1px solid #666;
+}
+
+dl#product{
+  position: relative;
+  min-height: 220px;
+}
+dl#product dt, dl#product dd{
+  margin-left: 180px;
+}
+dl#product .image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 0;
+}
+dl#product .image img{
+  border: 8px solid #333;
+}
+dl#product dd{
+  margin-bottom: 1em;
+}
+
 div#stats {
   margin-top: 2em;
 }
@@ -26,7 +81,7 @@ table#cart td, table#orders td{
 table#cart, table#orders td.actions {
   text-align: right;
 }
-table#cart td:first-child, table#card td:first-child;{
+table#cart td:first-child{
   padding: .5em 1em;
   text-align: left;
 }
@@ -36,6 +91,7 @@ table#cart form, table#orders form{
 }
 table#cart tfoot{
   border-top: 1px solid #666;
+  font-weight: bold;
 }
 
 .btn{
