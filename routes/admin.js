@@ -1,9 +1,13 @@
-module.exports = function(app, ordersRepo){
+module.exports = function(app, ordersRepo) {
 
-  app.get('/admin', function(req, res){
-    ordersRepo.find(function(err, orders){
-      if(err) throw err;
-      res.render('admin', { orders: orders });
+  app.get('/admin', function(req, res) {
+    ordersRepo.all(function(err, orders) {
+      var total = orders.length;
+      var pending = orders.filter(function(order) { return order.status === 'pending'; });
+      var complete = orders.filter(function(order) { return order.status === 'complete'; });
+      var pending_percentage = (pending.length/total)*100;
+      var complete_percentage = (complete.length/total)*100;
+      res.render('admin', { orders: orders, pending_percentage: pending_percentage, complete_percentage: complete_percentage});
     });
   });
 

@@ -2,10 +2,22 @@ extends layout
 
 block content
   .container
-  
+
     h1 Admin Console: Orders
     if orders.length
-      table#orders
+      div#stats
+        div.span5
+          h3 Pending Orders
+          p Orders pending completion
+          div.progress.progress-striped.progress-warning.active
+            div.bar(style="width: #{pending_percentage}%;")
+        div.span5
+          h3 Completed Orders
+          p Orders that have shipped
+          div.progress.progress-striped.progress-success.active
+            div.bar(style="width: #{complete_percentage}%;")
+
+      table.table#orders
         thead
           tr
             th Email
@@ -21,8 +33,9 @@ block content
             td= o.products.length
             td= o.status
             if(o.status === 'pending')
-              td: form(method='post', action='/admin')
+              td.actions: form(method='post', action='/admin')
                 input(type='hidden', id='order_id', name='order_id', value="#{o._id}")
                 input.btn.btn-success(type='submit', value='Mark Complete')
+
     else
       p: No orders have been received

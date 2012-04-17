@@ -3,8 +3,14 @@ body{
   cursor: default;
 }
 
-table#cart, table#orders{
+div#stats {
+  margin-top: 2em;
+}
+table#cart {
   margin-top: 1em;
+}
+table#orders {
+  margin-top: 11em;
 }
 table#cart thead, table#orders thead{
   background-color: #666;
@@ -16,6 +22,8 @@ table#cart th, table#orders, th{
 }
 table#cart td, table#orders td{
   padding: .5em 1em;
+}
+table#cart, table#orders td.actions {
   text-align: right;
 }
 table#cart td:first-child, table#card td:first-child;{
