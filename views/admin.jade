@@ -4,14 +4,25 @@ block content
   .container
   
     h1 Admin Console: Orders
-    ul
-      for o in orders
-        form(method='post', action='/admin')
-          input(type='hidden', id='order_id', name='order_id', value="#{o._id}")
-          li: dl
-            dd.email= o.email
-            dd.total_price= o.total_price
-            dd.product_count= o.products.length
-            dd.status= o.status
-            - if(o.status === 'pending')
-                dd.mark_complete: input.btn.btn-success(type='submit', value='Mark Complete')
+    if orders.length
+      table#orders
+        thead
+          tr
+            th Email
+            th Total
+            th Product Count
+            th Status
+            th 
+        tbody
+        each o in orders
+          tr
+            td= o.email
+            td $#{o.total_price}
+            td= o.products.length
+            td= o.status
+            if(o.status === 'pending')
+              td: form(method='post', action='/admin')
+                input(type='hidden', id='order_id', name='order_id', value="#{o._id}")
+                input.btn.btn-success(type='submit', value='Mark Complete')
+    else
+      p: No orders have been received

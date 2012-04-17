@@ -3,26 +3,26 @@ body{
   cursor: default;
 }
 
-table#cart{
+table#cart, table#orders{
   margin-top: 1em;
 }
-table#cart thead{
+table#cart thead, table#orders thead{
   background-color: #666;
   color: #fff;
 }
-table#cart th{
+table#cart th, table#orders, th{
   padding: .5em 1em;
   text-align: left;
 }
-table#cart td{
+table#cart td, table#orders td{
   padding: .5em 1em;
   text-align: right;
 }
-table#cart td:first-child{
+table#cart td:first-child, table#card td:first-child;{
   padding: .5em 1em;
   text-align: left;
 }
-table#cart form{
+table#cart form, table#orders form{
   margin: 0;
   padding: 0;
 }
