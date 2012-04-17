@@ -29,7 +29,7 @@ block content
         each o in orders
           tr
             td= o.username
-            td $#{o.total_price}
+            td $#{o.total_price.toFixed(2)}
             td= o.products.length
             td= o.status
             if(o.status === 'pending')
