@@ -28,12 +28,14 @@ html(lang='en')
                 li: a(href='/orders') Previous Orders
                 if hasAdminAccess
                   li: a(href='/admin') Admin
-                li: a(href='#') Logout
+                li: a(href='/logout') Logout
               else
-                li: a(href='#') Login
+                li: a(href='/auth/twitter', id='login') Login
 
     block content
 
     block scripts
       script(src='/js/jquery-1.7.2.min.js')
       script(src='/bootstrap/js/bootstrap.min.js')
+      script(src='/auth/client')
+      script(src='/js/app.js')

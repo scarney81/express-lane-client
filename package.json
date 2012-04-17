@@ -9,6 +9,7 @@
     , "connect-assets": ">= 2.1.9"
     , "socket.io": ">= 0.9.4"
     , "request": ">= 2.9.153"
+    , "easy-oauth": "0.2.1"
   }
   , "scripts": {
       "start": "node app.js"
