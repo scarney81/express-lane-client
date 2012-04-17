@@ -52,6 +52,7 @@ dl#product .image{
   margin-left: 0;
 }
 dl#product .image img{
+  width: 150px;
   border: 8px solid #333;
 }
 dl#product dd{
