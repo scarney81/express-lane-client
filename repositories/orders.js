@@ -2,18 +2,10 @@ var request = require('request');
 
 module.exports = function(config) {
   return {
-    
-    all: function(cb) {
-      var url = config.serverUrl + '/orders';
-      var options = { json: true, method: 'get', url: url };
-      request(options, function(err, res, body) {
-        if (err !== null) cb(err)
-        else cb(null, body);
-      });
-    },
 
     find: function(username, cb){
-      var url = config.serverUrl + '/orders/' + username;
+      var url = config.serverUrl + '/orders';
+      if (username) url += '/' + username;
       var options = { json: true, method: 'get', url: url };
       request(options, function(err, res, body) {
         if (err !== null) cb(err);
