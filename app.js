@@ -58,7 +58,7 @@ app.dynamicHelpers({
 // Routes
 routes.product(app, repos.products);
 routes.cart(app, repos.cart, repos.products);
-routes.orders(app, repos.cart, repos.orders);
+routes.checkout(app, repos.cart, repos.orders);
 routes.admin(app, repos.orders);
 
 // Go!
